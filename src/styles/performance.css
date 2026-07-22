@@ -1,0 +1,28 @@
+/* Below-the-fold rendering optimization */
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+#hero {
+  content-visibility: visible;
+}
+
+.hero__bg {
+  contain: strict;
+}
+
+.hero__bg canvas {
+  will-change: opacity;
+}
+
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 120px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg canvas {
+    will-change: auto;
+  }
+}

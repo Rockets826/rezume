@@ -5,17 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Богдан Сикорский — Junior PHP / Backend Developer. Портфолио разработчика: веб-приложения, 3D, автоматизация."
+      content="Богдан Сикорский — Junior PHP / Backend Developer. Портфолио: веб-приложения, 3D-навигация, автоматизация, PostgreSQL, Three.js."
     />
+    <meta
+      name="keywords"
+      content="Богдан Сикорский, PHP developer, backend developer, portfolio, Three.js, PostgreSQL, web developer"
+    />
+    <meta name="author" content="Богдан Сикорский" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#09090B" />
+    <link rel="canonical" href="https://rockets826.github.io/rezume/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:url" content="https://rockets826.github.io/rezume/" />
+    <meta property="og:title" content="Богдан Сикорский — Junior PHP / Backend Developer" />
+    <meta
+      property="og:description"
+      content="Портфолио разработчика: веб-приложения, 3D-навигация по кампусу, автоматизация процессов."
+    />
+    <meta
+      property="og:image"
+      content="https://rockets826.github.io/rezume/assets/images/projects/campus-nav.svg"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Богдан Сикорский — Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Junior PHP / Backend Developer — портфолио с 3D, автоматизацией и современным стеком."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rockets826.github.io/rezume/assets/images/projects/campus-nav.svg"
+    />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <title>Богдан Сикорский — Portfolio</title>
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <title>Богдан Сикорский — Junior PHP / Backend Developer</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Богдан Сикорский",
+        "jobTitle": "Junior PHP / Backend Developer",
+        "email": "rocketagames123@gmail.com",
+        "url": "https://rockets826.github.io/rezume/",
+        "sameAs": ["https://github.com/Rockets826"],
+        "knowsAbout": [
+          "PHP",
+          "PostgreSQL",
+          "JavaScript",
+          "Three.js",
+          "Web Development"
+        ],
+        "description": "Разрабатываю веб-приложения, автоматизирую процессы и создаю современные цифровые решения."
+      }
+    </script>
   </head>
   <body>
     <!-- Loading Screen -->
@@ -91,9 +154,56 @@
             <div class="hero__scroll-line"></div>
           </div>
         </section>
+
+        <div id="sections-root"></div>
       </main>
+
+      <!-- Interactive Terminal -->
+      <button
+        id="terminal-toggle"
+        class="terminal-toggle"
+        type="button"
+        aria-label="Открыть терминал"
+        aria-expanded="false"
+        aria-controls="terminal"
+      >
+        <span class="terminal-toggle__icon">&gt;_</span>
+      </button>
+      <span class="terminal__hint" aria-hidden="true">` — терминал</span>
+
+      <div id="terminal" class="terminal" aria-hidden="true" role="dialog" aria-label="Интерактивный терминал">
+        <div class="terminal__header">
+          <div class="terminal__title">
+            <div class="terminal__dots" aria-hidden="true">
+              <span class="terminal__dot terminal__dot--close" id="terminal-close" title="Закрыть"></span>
+              <span class="terminal__dot terminal__dot--min"></span>
+              <span class="terminal__dot terminal__dot--max"></span>
+            </div>
+            <span>bogdan@portfolio</span>
+          </div>
+          <button type="button" class="terminal__close" id="terminal-close-btn" aria-label="Закрыть">esc</button>
+        </div>
+        <div class="terminal__body">
+          <div id="terminal-output" class="terminal__output" aria-live="polite"></div>
+          <form id="terminal-form" class="terminal__form" autocomplete="off">
+            <span class="terminal__prompt" aria-hidden="true">
+              <span class="terminal__prompt-user">bogdan</span><span class="terminal__prompt-at">@</span><span class="terminal__prompt-host">portfolio</span><span class="terminal__prompt-symbol">:~$</span>
+            </span>
+            <input
+              id="terminal-input"
+              class="terminal__input"
+              type="text"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              aria-label="Команда терминала"
+              placeholder="help"
+            />
+          </form>
+        </div>
+      </div>
     </div>
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js" crossorigin></script>
   </body>
 </html>

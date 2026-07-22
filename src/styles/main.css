@@ -3,4 +3,7 @@
 @import './components.css';
 @import './loader.css';
 @import './sections.css';
+@import './content-sections.css';
+@import './terminal.css';
+@import './performance.css';
 @import './responsive.css';

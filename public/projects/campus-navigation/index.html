@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Campus Navigation System — 3D-система навигации по кампусу университета"
+    />
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Campus Navigation System — Богдан Сикорский</title>
+    <style>
+      :root {
+        --bg: #09090b;
+        --accent: #3b82f6;
+        --accent-2: #6366f1;
+        --text: #fff;
+        --muted: #a1a1aa;
+        --glass: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.08);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.875rem;
+        margin-bottom: 40px;
+        transition: color 0.2s;
+      }
+
+      .back:hover { color: var(--accent); }
+
+      .hero-img {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        margin-bottom: 32px;
+      }
+
+      .label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        margin-bottom: 24px;
+      }
+
+      .description {
+        color: var(--muted);
+        margin-bottom: 32px;
+        line-height: 1.8;
+      }
+
+      .section-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      .features {
+        list-style: none;
+        margin-bottom: 32px;
+      }
+
+      .features li {
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 0.9375rem;
+        color: var(--muted);
+      }
+
+      .features li::before {
+        content: '→ ';
+        color: var(--accent);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 32px;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .btn:active { transform: scale(0.98); }
+
+      .btn--primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        box-shadow: 0 4px 24px rgba(59, 130, 246, 0.35);
+      }
+
+      .btn--ghost {
+        background: var(--glass);
+        border: 1px solid var(--border);
+        color: #fff;
+      }
+
+      .btn--ghost:hover { border-color: rgba(255, 255, 255, 0.15); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="../../" class="back">← Назад к портфолио</a>
+
+      <img
+        class="hero-img"
+        src="../../assets/images/projects/campus-nav.svg"
+        alt="Campus Navigation System"
+      />
+
+      <p class="label">Дипломный проект</p>
+      <h1>Campus Navigation System</h1>
+      <p class="subtitle">3D-навигация по кампусу университета (ЛГУ)</p>
+
+      <p class="description">
+        Информационная система навигации по кампусу университета. Проект включает
+        3D-визуализацию зданий на WebGL, модели из Blender, поиск помещений и
+        построение маршрутов внутри корпусов. Данные хранятся в PostgreSQL.
+      </p>
+
+      <h2 class="section-title">Ключевые возможности</h2>
+      <ul class="features">
+        <li>3D-визуализация корпусов и макета района (GLB-модели)</li>
+        <li>Интерактивная сцена на Three.js / WebGL</li>
+        <li>Поиск помещений по названию</li>
+        <li>Построение маршрутов внутри здания</li>
+        <li>Работа с PostgreSQL для хранения данных о помещениях</li>
+      </ul>
+
+      <h2 class="section-title">Технологии</h2>
+      <div class="tags">
+        <span class="tag">PHP</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Three.js</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Blender</span>
+        <span class="tag">WebGL</span>
+      </div>
+
+      <div class="actions">
+        <a
+          href="https://github.com/Rockets826/3Dmodels"
+          class="btn btn--primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        <a href="../../#projects" class="btn btn--ghost">Все проекты</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rockets826.github.io/rezume/sitemap.xml
