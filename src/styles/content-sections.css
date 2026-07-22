@@ -52,6 +52,11 @@
 }
 
 .about__content {
+  height: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: clamp(24px, 4vw, 40px);
 }
 
@@ -69,6 +74,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: 100%;
+  align-self: stretch;
 }
 
 .stat-card {
@@ -77,18 +84,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 88px;
   padding: 28px 24px;
   text-align: center;
   transition:
-    transform var(--transition-base),
     border-color var(--transition-base),
     box-shadow var(--transition-base);
 }
 
 .stat-card:hover {
-  transform: translateY(-4px);
   border-color: rgba(59, 130, 246, 0.3);
   box-shadow: 0 12px 40px rgba(59, 130, 246, 0.08);
+  translate: 0 -4px;
 }
 
 .stat-card__value {

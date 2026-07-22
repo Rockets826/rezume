@@ -26,24 +26,26 @@ function animateSectionHeaders(gsap) {
 }
 
 function animateAbout(gsap) {
-  const section = document.querySelector('.about');
-  if (!section) return;
+  const grid = document.querySelector('.about__grid');
+  if (!grid) return;
 
-  gsap.from(section.querySelector('.about__content'), {
-    x: -40,
+  gsap.from(grid.querySelector('.about__content'), {
+    x: -30,
     opacity: 0,
-    duration: 0.9,
+    duration: 0.85,
     ease: DEFAULT_EASE,
-    scrollTrigger: scrollTriggerConfig(section.querySelector('.about__grid')),
+    clearProps: 'transform',
+    scrollTrigger: scrollTriggerConfig(grid),
   });
 
-  gsap.from(section.querySelectorAll('.stat-card'), {
-    y: 48,
+  gsap.from(grid.querySelectorAll('.stat-card'), {
+    y: 28,
     opacity: 0,
-    duration: 0.75,
-    stagger: 0.12,
+    duration: 0.65,
+    stagger: 0.1,
     ease: DEFAULT_EASE,
-    scrollTrigger: scrollTriggerConfig(section.querySelector('.about__stats')),
+    clearProps: 'transform',
+    scrollTrigger: scrollTriggerConfig(grid),
   });
 }
 
@@ -52,12 +54,12 @@ function animateSkills(gsap) {
   if (!grid) return;
 
   gsap.from(grid.querySelectorAll('.skill-card'), {
-    y: 56,
+    y: 40,
     opacity: 0,
-    scale: 0.96,
-    duration: 0.8,
+    duration: 0.75,
     stagger: 0.1,
     ease: DEFAULT_EASE,
+    clearProps: 'transform',
     scrollTrigger: scrollTriggerConfig(grid, 'top 88%'),
   });
 }
