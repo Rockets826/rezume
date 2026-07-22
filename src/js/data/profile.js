@@ -14,7 +14,8 @@ export const profile = {
     'Разрабатываю веб-приложения, автоматизирую процессы и создаю современные цифровые решения.',
   email: 'rocketagames123@gmail.com',
   github: 'https://github.com/Rockets826',
-  telegram: null,
+  telegram: 'https://t.me/rocketa22778',
+  telegramUsername: '@rocketa22778',
   resumePath: './resume.pdf',
 };
 

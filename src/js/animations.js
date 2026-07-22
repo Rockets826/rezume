@@ -117,12 +117,12 @@ function animateContact(gsap) {
   if (!grid) return;
 
   gsap.from(grid.querySelectorAll('.contact-card'), {
-    y: 40,
+    y: 32,
     opacity: 0,
-    scale: 0.94,
-    duration: 0.7,
-    stagger: 0.1,
+    duration: 0.65,
+    stagger: 0.08,
     ease: DEFAULT_EASE,
+    clearProps: 'transform',
     scrollTrigger: scrollTriggerConfig(grid, 'top 88%'),
   });
 }

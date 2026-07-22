@@ -5,7 +5,7 @@ import { projects } from './data/projects.js';
 const PROMPT = `<span class="terminal__prompt-user">bogdan</span><span class="terminal__prompt-at">@</span><span class="terminal__prompt-host">portfolio</span><span class="terminal__prompt-symbol">:~$</span>`;
 const NAV_OFFSET = 80;
 
-const COMMANDS = ['help', 'about', 'skills', 'projects', 'github', 'resume', 'clear'];
+const COMMANDS = ['help', 'about', 'skills', 'projects', 'github', 'telegram', 'resume', 'clear'];
 
 export function initTerminal() {
   const toggle = document.getElementById('terminal-toggle');
@@ -82,6 +82,7 @@ export function initTerminal() {
     print('  skills    — технологии и навыки');
     print('  projects  — мои проекты');
     print('  github    — открыть GitHub');
+    print('  telegram  — открыть Telegram');
     print('  resume    — скачать резюме');
     print('  clear     — очистить терминал');
   }
@@ -112,6 +113,13 @@ export function initTerminal() {
   function cmdGithub() {
     print(`Opening GitHub: ${profile.github}`);
     window.open(profile.github, '_blank', 'noopener,noreferrer');
+  }
+
+  function cmdTelegram() {
+    if (!profile.telegram) return;
+    print(`Opening Telegram: ${profile.telegramUsername ?? profile.telegram}`);
+    window.open(profile.telegram, '_blank', 'noopener,noreferrer');
+    scrollToSection('contact');
   }
 
   function cmdResume() {
@@ -158,6 +166,9 @@ export function initTerminal() {
         break;
       case 'github':
         cmdGithub();
+        break;
+      case 'telegram':
+        cmdTelegram();
         break;
       case 'resume':
         cmdResume();

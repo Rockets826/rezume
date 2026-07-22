@@ -385,6 +385,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  align-items: stretch;
 }
 
 .contact-card {
@@ -393,18 +394,19 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 32px 20px;
+  min-height: 148px;
+  height: 100%;
+  padding: 28px 16px;
   text-align: center;
   transition:
-    transform var(--transition-base),
     border-color var(--transition-base),
     box-shadow var(--transition-base);
 }
 
 .contact-card:hover {
-  transform: translateY(-4px);
   border-color: rgba(59, 130, 246, 0.3);
   box-shadow: 0 12px 40px rgba(59, 130, 246, 0.08);
+  translate: 0 -4px;
 }
 
 .contact-card--disabled {
@@ -419,10 +421,12 @@
 }
 
 .contact-card__label {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--text-secondary);
-  word-break: break-all;
+  line-height: 1.4;
+  max-width: 100%;
+  word-break: break-word;
 }
 
 .contact-card__hint {

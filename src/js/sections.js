@@ -140,7 +140,7 @@ function renderContact() {
   const telegramLink = profile.telegram
     ? `<a href="${profile.telegram}" class="contact-card glass-card" target="_blank" rel="noopener noreferrer">
          <span class="contact-card__icon">✈</span>
-         <span class="contact-card__label">Telegram</span>
+         <span class="contact-card__label">${profile.telegramUsername ?? 'Telegram'}</span>
        </a>`
     : `<div class="contact-card glass-card contact-card--disabled" title="Ссылка скоро будет добавлена">
          <span class="contact-card__icon">✈</span>
