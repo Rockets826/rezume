@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Богдан Сикорский — Junior PHP / Backend Developer. Портфолио разработчика: веб-приложения, 3D, автоматизация."
+    />
+    <meta name="theme-color" content="#09090B" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Богдан Сикорский — Portfolio</title>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader" aria-hidden="false">
+      <div class="loader__inner">
+        <div class="loader__logo">
+          <span class="loader__logo-bracket">&lt;</span>
+          <span class="loader__logo-text">BS</span>
+          <span class="loader__logo-bracket">/&gt;</span>
+        </div>
+        <div class="loader__steps" id="loader-steps"></div>
+        <div class="loader__progress">
+          <div class="loader__progress-bar" id="loader-progress"></div>
+        </div>
+        <p class="loader__welcome" id="loader-welcome">Welcome.</p>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="app app--hidden">
+      <!-- Navigation -->
+      <header class="nav" id="nav">
+        <a href="#hero" class="nav__logo" aria-label="На главную">
+          <span>&lt;BS/&gt;</span>
+        </a>
+        <nav class="nav__links" aria-label="Основная навигация">
+          <a href="#about" class="nav__link">Обо мне</a>
+          <a href="#skills" class="nav__link">Навыки</a>
+          <a href="#projects" class="nav__link">Проекты</a>
+          <a href="#experience" class="nav__link">Опыт</a>
+          <a href="#contact" class="nav__link">Контакты</a>
+        </nav>
+        <button class="nav__burger" id="nav-burger" aria-label="Меню" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <main>
+        <!-- Hero -->
+        <section id="hero" class="hero">
+          <div class="hero__bg" id="hero-bg" aria-hidden="true">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero__bg-gradient"></div>
+          </div>
+
+          <div class="hero__content">
+            <p class="hero__greeting">Привет, я</p>
+            <h1 class="hero__name">Богдан Сикорский</h1>
+            <p class="hero__role">Junior PHP / Backend Developer</p>
+            <p class="hero__description">
+              Разрабатываю веб-приложения, автоматизирую процессы и создаю современные
+              цифровые решения.
+            </p>
+            <div class="hero__actions">
+              <a href="#projects" class="btn btn--primary">Projects</a>
+              <a
+                href="https://github.com/Rockets826"
+                class="btn btn--ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a href="./resume.pdf" class="btn btn--ghost" download="Bogdan_Sikorsky_Resume.pdf">
+                Download Resume
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__scroll" aria-hidden="true">
+            <span class="hero__scroll-text">Scroll</span>
+            <div class="hero__scroll-line"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
