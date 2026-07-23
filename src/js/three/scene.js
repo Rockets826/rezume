@@ -96,7 +96,7 @@ export function initHeroScene(canvas) {
   const sceneGroup = new Group();
   scene.add(sceneGroup);
 
-  const particleCount = window.innerWidth > 1200 ? 1400 : 800;
+  const particleCount = window.innerWidth > 1200 ? 900 : 500;
   const particles = createParticles(particleCount);
   sceneGroup.add(particles);
 

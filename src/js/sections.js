@@ -28,6 +28,17 @@ function renderAbout() {
     .map((p) => `<p class="about__text">${p}</p>`)
     .join('');
 
+  const interests = aboutContent.interests
+    .map(
+      (item) => `
+      <span class="interest-chip">
+        <span class="interest-chip__icon" aria-hidden="true">${item.icon}</span>
+        ${item.label}
+      </span>
+    `
+    )
+    .join('');
+
   return `
     <section id="about" class="section about">
       <div class="container">
@@ -35,6 +46,10 @@ function renderAbout() {
         <div class="about__grid">
           <div class="about__content glass-card">
             ${paragraphs}
+            <div class="about__interests">
+              <h3 class="about__interests-title">Что мне интересно</h3>
+              <div class="about__interests-list">${interests}</div>
+            </div>
           </div>
           <div class="about__stats">${stats}</div>
         </div>
@@ -49,8 +64,11 @@ function renderSkills() {
       (cat) => `
       <article class="skill-card glass-card" data-category="${cat.id}">
         <div class="skill-card__header">
-          <span class="skill-card__icon" aria-hidden="true">${cat.icon}</span>
-          <h3 class="skill-card__title">${cat.title}</h3>
+          <div class="skill-card__title-wrap">
+            <span class="skill-card__icon" aria-hidden="true">${cat.icon}</span>
+            <h3 class="skill-card__title">${cat.title}</h3>
+          </div>
+          <span class="skill-card__level">${cat.level}</span>
         </div>
         <ul class="skill-card__list">
           ${cat.skills.map((s) => `<li class="skill-card__item">${s}</li>`).join('')}
@@ -74,24 +92,31 @@ function renderProjects() {
   const cards = projects
     .map((project) => {
       const tags = project.technologies
+        .slice(0, 5)
         .map((t) => `<span class="project-card__tag">${t}</span>`)
         .join('');
+
+      const label = project.featured
+        ? 'Дипломный проект'
+        : project.type === 'automation'
+          ? 'Automation'
+          : 'Web Project';
 
       return `
         <article class="project-card glass-card ${project.featured ? 'project-card--featured' : ''}">
           <a href="${project.detailPage}" class="project-card__image-link">
             <div class="project-card__image">
-              <img src="${project.image}" alt="${project.title}" loading="lazy" />
+              <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" width="800" height="500" />
             </div>
           </a>
           <div class="project-card__body">
-            <span class="project-card__label">Featured Project</span>
+            <span class="project-card__label">${label}</span>
             <h3 class="project-card__title">${project.title}</h3>
             <p class="project-card__subtitle">${project.subtitle}</p>
             <p class="project-card__description">${project.description}</p>
             <div class="project-card__tags">${tags}</div>
             <div class="project-card__actions">
-              <a href="${project.detailPage}" class="btn btn--ghost btn--sm">Подробнее</a>
+              <a href="${project.detailPage}" class="btn btn--ghost btn--sm">Кейс</a>
               <a href="${project.github}" class="btn btn--primary btn--sm" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
@@ -112,25 +137,45 @@ function renderProjects() {
 
 function renderExperience() {
   const items = experience
-    .map(
-      (item) => `
-      <div class="timeline__item ${item.highlight ? 'timeline__item--highlight' : ''}">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content glass-card">
-          <time class="timeline__year">${item.year}</time>
-          <h3 class="timeline__title">${item.title}</h3>
-          <p class="timeline__description">${item.description}</p>
+    .map((item) => {
+      const achievements = item.achievements
+        ? `<ul class="timeline__achievements">${item.achievements.map((a) => `<li>${a}</li>`).join('')}</ul>`
+        : '';
+      const learned = item.learned
+        ? `<p class="timeline__learned"><strong>Чему научился:</strong> ${item.learned}</p>`
+        : '';
+
+      return `
+        <div class="timeline__item ${item.highlight ? 'timeline__item--highlight' : ''}">
+          <div class="timeline__marker"></div>
+          <div class="timeline__content glass-card">
+            <time class="timeline__year">${item.year}</time>
+            <h3 class="timeline__title">${item.title}</h3>
+            <p class="timeline__description">${item.description}</p>
+            ${achievements}
+            ${learned}
+          </div>
         </div>
-      </div>
-    `
-    )
+      `;
+    })
     .join('');
 
   return `
     <section id="experience" class="section experience">
       <div class="container">
-        ${sectionHeader('Опыт', 'Мой путь в разработке')}
+        ${sectionHeader('Опыт', 'Timeline достижений и ключевых этапов')}
         <div class="timeline">${items}</div>
+      </div>
+    </section>
+  `;
+}
+
+function renderGitHub() {
+  return `
+    <section id="github" class="section github-section">
+      <div class="container">
+        ${sectionHeader('GitHub', 'Активность и репозитории в реальном времени')}
+        <div id="github-block" class="github-block"></div>
       </div>
     </section>
   `;
@@ -142,11 +187,7 @@ function renderContact() {
          <span class="contact-card__icon">✈</span>
          <span class="contact-card__label">${profile.telegramUsername ?? 'Telegram'}</span>
        </a>`
-    : `<div class="contact-card glass-card contact-card--disabled" title="Ссылка скоро будет добавлена">
-         <span class="contact-card__icon">✈</span>
-         <span class="contact-card__label">Telegram</span>
-         <span class="contact-card__hint">Скоро</span>
-       </div>`;
+    : '';
 
   return `
     <section id="contact" class="section contact">
@@ -176,8 +217,18 @@ function renderFooter() {
   return `
     <footer class="footer">
       <div class="container footer__inner">
-        <p class="footer__copy">© ${new Date().getFullYear()} ${profile.name}</p>
-        <p class="footer__note">Built with HTML, CSS, JavaScript & Three.js</p>
+        <div class="footer__brand">
+          <span class="footer__logo">&lt;BS/&gt;</span>
+          <p class="footer__copy">© ${new Date().getFullYear()} ${profile.name}</p>
+          <p class="footer__note">Junior PHP / Backend Developer</p>
+        </div>
+        <nav class="footer__links" aria-label="Контакты в футере">
+          <a href="${profile.github}" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="${profile.telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="mailto:${profile.email}">Email</a>
+          <a href="${profile.resumePath}" download="Bogdan_Sikorsky_Resume.pdf">Resume</a>
+        </nav>
+        <p class="footer__stack">Built with HTML · CSS · JavaScript · Three.js · GSAP</p>
       </div>
     </footer>
   `;
@@ -192,12 +243,13 @@ export function renderSections() {
     renderSkills() +
     renderProjects() +
     renderExperience() +
+    renderGitHub() +
     renderContact() +
     renderFooter();
 }
 
 export function initSkillCards() {
-  document.querySelectorAll('.skill-card').forEach((card) => {
+  document.querySelectorAll('.skill-card, .project-card, .contact-card, .stat-card').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;

@@ -65,30 +65,42 @@ function animateSkills(gsap) {
 }
 
 function animateProjects(gsap) {
-  const card = document.querySelector('.project-card');
-  if (!card) return;
+  const cards = document.querySelectorAll('.project-card');
+  if (!cards.length) return;
 
-  gsap.from(card.querySelector('.project-card__image'), {
-    x: -50,
-    opacity: 0,
-    duration: 1,
-    ease: DEFAULT_EASE,
-    scrollTrigger: scrollTriggerConfig(card),
-  });
-
-  gsap.from(
-    card.querySelectorAll(
-      '.project-card__label, .project-card__title, .project-card__subtitle, .project-card__description, .project-card__tags, .project-card__actions'
-    ),
-    {
-      y: 32,
+  cards.forEach((card, index) => {
+    gsap.from(card.querySelector('.project-card__image'), {
+      x: index % 2 === 0 ? -40 : 40,
       opacity: 0,
-      duration: 0.75,
-      stagger: 0.08,
+      duration: 0.85,
       ease: DEFAULT_EASE,
-      scrollTrigger: scrollTriggerConfig(card, 'top 80%'),
-    }
-  );
+      clearProps: 'transform',
+      scrollTrigger: scrollTriggerConfig(card, 'top 85%'),
+    });
+
+    gsap.from(card.querySelector('.project-card__body'), {
+      y: 28,
+      opacity: 0,
+      duration: 0.7,
+      ease: DEFAULT_EASE,
+      clearProps: 'transform',
+      scrollTrigger: scrollTriggerConfig(card, 'top 82%'),
+    });
+  });
+}
+
+function animateGitHub(gsap) {
+  const block = document.getElementById('github-block');
+  if (!block) return;
+
+  gsap.from(block, {
+    y: 32,
+    opacity: 0,
+    duration: 0.75,
+    ease: DEFAULT_EASE,
+    clearProps: 'transform',
+    scrollTrigger: scrollTriggerConfig(block, 'top 88%'),
+  });
 }
 
 function animateExperience(gsap) {
@@ -101,6 +113,7 @@ function animateExperience(gsap) {
     duration: 0.8,
     stagger: 0.14,
     ease: DEFAULT_EASE,
+    clearProps: 'transform',
     scrollTrigger: scrollTriggerConfig(timeline, 'top 85%'),
   });
 
@@ -133,12 +146,13 @@ function animateFooter(gsap) {
   const footer = document.querySelector('.footer');
   if (!footer) return;
 
-  gsap.from(footer.querySelectorAll('.footer__copy, .footer__note'), {
+  gsap.from(footer.querySelectorAll('.footer__brand, .footer__links, .footer__stack'), {
     y: 20,
     opacity: 0,
     duration: 0.6,
     stagger: 0.08,
     ease: DEFAULT_EASE,
+    clearProps: 'transform',
     scrollTrigger: scrollTriggerConfig(footer, 'top 95%'),
   });
 }
@@ -158,6 +172,7 @@ export async function initScrollAnimations() {
   animateSkills(gsap);
   animateProjects(gsap);
   animateExperience(gsap);
+  animateGitHub(gsap);
   animateContact(gsap);
   animateFooter(gsap);
 

@@ -1,11 +1,15 @@
 import { profile, aboutContent } from './data/profile.js';
 import { skillCategories } from './data/skills.js';
 import { projects } from './data/projects.js';
+import { experience } from './data/experience.js';
 
 const PROMPT = `<span class="terminal__prompt-user">bogdan</span><span class="terminal__prompt-at">@</span><span class="terminal__prompt-host">portfolio</span><span class="terminal__prompt-symbol">:~$</span>`;
 const NAV_OFFSET = 80;
 
-const COMMANDS = ['help', 'about', 'skills', 'projects', 'github', 'telegram', 'resume', 'clear'];
+const COMMANDS = [
+  'help', 'about', 'skills', 'projects', 'experience',
+  'github', 'contact', 'telegram', 'resume', 'whoami', 'clear',
+];
 
 export function initTerminal() {
   const toggle = document.getElementById('terminal-toggle');
@@ -77,26 +81,39 @@ export function initTerminal() {
 
   function cmdHelp() {
     print('<span class="terminal__accent">Доступные команды:</span>');
-    print('  help      — список команд');
-    print('  about     — информация обо мне');
-    print('  skills    — технологии и навыки');
-    print('  projects  — мои проекты');
-    print('  github    — открыть GitHub');
-    print('  telegram  — открыть Telegram');
-    print('  resume    — скачать резюме');
-    print('  clear     — очистить терминал');
+    print('  help       — список команд');
+    print('  about      — информация обо мне');
+    print('  skills     — технологии и навыки');
+    print('  projects   — мои проекты');
+    print('  experience — опыт и достижения');
+    print('  github     — открыть GitHub');
+    print('  contact    — контакты');
+    print('  resume     — скачать резюме');
+    print('  whoami     — краткая информация');
+    print('  clear      — очистить терминал');
   }
 
   function cmdAbout() {
     print(`<span class="terminal__accent">${profile.name}</span>`);
     print(profile.role);
+    print(profile.tagline);
     aboutContent.paragraphs.forEach((p) => print(p));
     scrollToSection('about');
   }
 
+  function cmdWhoami() {
+    print(`<span class="terminal__accent">${profile.name}</span>`);
+    print(`${profile.role}`);
+    print(`${profile.tagline}`);
+    print(`Email: ${profile.email}`);
+    print(`GitHub: ${profile.github}`);
+    print(`Telegram: ${profile.telegramUsername}`);
+  }
+
   function cmdSkills() {
     skillCategories.forEach((cat) => {
-      print(`<span class="terminal__accent">${cat.title}:</span> ${cat.skills.join(', ')}`);
+      print(`<span class="terminal__accent">${cat.title}</span> [${cat.level}]`);
+      print(`  ${cat.skills.join(', ')}`);
     });
     scrollToSection('skills');
   }
@@ -105,20 +122,28 @@ export function initTerminal() {
     projects.forEach((p) => {
       print(`<span class="terminal__accent">${p.title}</span> — ${p.subtitle}`);
       print(`  ${p.technologies.join(' · ')}`);
-      print(`  <span class="terminal__muted">${p.github}</span>`);
     });
     scrollToSection('projects');
+  }
+
+  function cmdExperience() {
+    experience.forEach((item) => {
+      print(`<span class="terminal__accent">${item.year}</span> — ${item.title}`);
+      if (item.learned) print(`  <span class="terminal__muted">${item.learned}</span>`);
+    });
+    scrollToSection('experience');
   }
 
   function cmdGithub() {
     print(`Opening GitHub: ${profile.github}`);
     window.open(profile.github, '_blank', 'noopener,noreferrer');
+    scrollToSection('github');
   }
 
-  function cmdTelegram() {
-    if (!profile.telegram) return;
-    print(`Opening Telegram: ${profile.telegramUsername ?? profile.telegram}`);
-    window.open(profile.telegram, '_blank', 'noopener,noreferrer');
+  function cmdContact() {
+    print(`Email: ${profile.email}`);
+    print(`Telegram: ${profile.telegram}`);
+    print(`GitHub: ${profile.github}`);
     scrollToSection('contact');
   }
 
@@ -152,33 +177,18 @@ export function initTerminal() {
     }
 
     switch (cmd) {
-      case 'help':
-        cmdHelp();
-        break;
-      case 'about':
-        cmdAbout();
-        break;
-      case 'skills':
-        cmdSkills();
-        break;
-      case 'projects':
-        cmdProjects();
-        break;
-      case 'github':
-        cmdGithub();
-        break;
-      case 'telegram':
-        cmdTelegram();
-        break;
-      case 'resume':
-        cmdResume();
-        break;
-      case 'clear':
-        output.innerHTML = '';
-        showWelcome();
-        break;
-      default:
-        cmdUnknown(cmd);
+      case 'help': cmdHelp(); break;
+      case 'about': cmdAbout(); break;
+      case 'skills': cmdSkills(); break;
+      case 'projects': cmdProjects(); break;
+      case 'experience': cmdExperience(); break;
+      case 'github': cmdGithub(); break;
+      case 'contact': cmdContact(); break;
+      case 'telegram': cmdContact(); break;
+      case 'resume': cmdResume(); break;
+      case 'whoami': cmdWhoami(); break;
+      case 'clear': output.innerHTML = ''; showWelcome(); break;
+      default: cmdUnknown(cmd);
     }
   }
 
@@ -186,7 +196,6 @@ export function initTerminal() {
     e.preventDefault();
     const value = input.value.trim();
     if (!value) return;
-
     history.push(value);
     historyIndex = history.length;
     executeCommand(value);
@@ -201,7 +210,6 @@ export function initTerminal() {
         input.value = history[historyIndex];
       }
     }
-
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       if (historyIndex < history.length - 1) {
@@ -212,17 +220,13 @@ export function initTerminal() {
         input.value = '';
       }
     }
-
     if (e.key === 'Tab') {
       e.preventDefault();
       const value = input.value.trim().toLowerCase();
       const match = COMMANDS.find((c) => c.startsWith(value));
       if (match) input.value = match;
     }
-
-    if (e.key === 'Escape') {
-      closeTerminal();
-    }
+    if (e.key === 'Escape') closeTerminal();
   });
 
   toggle.addEventListener('click', toggleTerminal);
@@ -232,9 +236,7 @@ export function initTerminal() {
   document.addEventListener('keydown', (e) => {
     if (e.key === '`' && !e.ctrlKey && !e.metaKey && !e.altKey) {
       const tag = document.activeElement?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA') {
-        if (document.activeElement !== input) return;
-      }
+      if (tag === 'INPUT' || tag === 'TEXTAREA' && document.activeElement !== input) return;
       e.preventDefault();
       toggleTerminal();
     }

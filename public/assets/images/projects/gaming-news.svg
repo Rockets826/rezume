@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#09090B"/>
+  <rect x="80" y="60" width="640" height="380" rx="16" fill="#111827" stroke="#3B82F6" stroke-opacity="0.3"/>
+  <rect x="100" y="90" width="200" height="24" rx="4" fill="#3B82F6" opacity="0.6"/>
+  <rect x="100" y="130" width="280" height="12" rx="3" fill="#374151"/>
+  <rect x="100" y="150" width="240" height="12" rx="3" fill="#374151"/>
+  <rect x="100" y="190" width="180" height="120" rx="8" fill="#1F2937" stroke="#6366F1" stroke-opacity="0.4"/>
+  <rect x="300" y="190" width="180" height="120" rx="8" fill="#1F2937" stroke="#6366F1" stroke-opacity="0.4"/>
+  <rect x="500" y="190" width="180" height="120" rx="8" fill="#1F2937" stroke="#6366F1" stroke-opacity="0.4"/>
+  <text x="400" y="420" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#71717A">Gaming News Website</text>
+</svg>

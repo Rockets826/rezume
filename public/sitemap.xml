@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://rockets826.github.io/rezume/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://rockets826.github.io/rezume/projects/campus-navigation/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://rockets826.github.io/rezume/</loc><priority>1.0</priority></url>
+  <url><loc>https://rockets826.github.io/rezume/projects/campus-navigation/</loc><priority>0.9</priority></url>
+  <url><loc>https://rockets826.github.io/rezume/projects/gaming-news/</loc><priority>0.8</priority></url>
+  <url><loc>https://rockets826.github.io/rezume/projects/telegram-automation/</loc><priority>0.8</priority></url>
 </urlset>

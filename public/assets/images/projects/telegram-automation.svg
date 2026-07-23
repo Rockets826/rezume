@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#09090B"/>
+  <circle cx="400" cy="220" r="120" fill="rgba(59,130,246,0.08)"/>
+  <rect x="280" y="140" width="240" height="160" rx="20" fill="#111827" stroke="#3B82F6" stroke-opacity="0.4"/>
+  <path d="M340 220 L340 260 L380 240 L420 260 L420 220" stroke="#3B82F6" stroke-width="3" fill="none"/>
+  <circle cx="360" cy="200" r="8" fill="#6366F1"/>
+  <circle cx="440" cy="200" r="8" fill="#6366F1"/>
+  <rect x="180" y="320" width="440" height="8" rx="4" fill="#3B82F6" opacity="0.3"/>
+  <rect x="180" y="320" width="280" height="8" rx="4" fill="#3B82F6"/>
+  <text x="400" y="420" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#71717A">Telegram Automation</text>
+</svg>
